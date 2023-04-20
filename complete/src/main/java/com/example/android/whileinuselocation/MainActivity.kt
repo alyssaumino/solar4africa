@@ -299,6 +299,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
             if (location != null) {
                 logResultsToScreen("Foreground location: ${location.toText()}")
+                val tstamp = System.currentTimeMillis()
+                logResultsToScreen(tstamp.toString())
             }
         }
     }
