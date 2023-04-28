@@ -22,6 +22,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
@@ -299,8 +300,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 val tstamp = System.currentTimeMillis()
                 logResultsToScreen(tstamp.toString())
 
-                File(Environment.DIRECTORY_DOWNLOADS, FILENAME).createNewFile()
-                File(Environment.DIRECTORY_DOWNLOADS, FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
+                File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), FILENAME).createNewFile()
+                File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
                 //File(Environment.DIRECTORY_DOWNLOADS, FILENAME).printWriter().use{ out ->
                 //    out.println("Location: ${location.toText()} Time: $tstamp")
                 //    out.close()
