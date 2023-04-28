@@ -16,17 +16,12 @@
 package com.example.android.whileinuselocation
 
 import android.Manifest
-import android.content.BroadcastReceiver
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.content.ServiceConnection
-import android.content.SharedPreferences
+import android.content.*
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
@@ -37,8 +32,6 @@ import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
-import java.io.FileWriter
-import java.net.FileNameMap
 
 private const val TAG = "MainActivity"
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
@@ -306,9 +299,14 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 val tstamp = System.currentTimeMillis()
                 logResultsToScreen(tstamp.toString())
 
-                File(applicationContext.filesDir, FILENAME).printWriter().use{ out ->
+                File(Environment.DIRECTORY_DOWNLOADS, FILENAME).printWriter().use{ out ->
                     out.println("Location: ${location.toText()} Time: $tstamp")
+                    out.close()
                 }
+
+                //val file = File(context.getExternalFilesDir(null), FILENAME)
+                //file.createNewFile()
+
                 //var file = File(FILENAME)
                 //file.createNewFile()
                 //File(FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
