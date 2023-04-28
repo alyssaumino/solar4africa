@@ -300,8 +300,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 val tstamp = System.currentTimeMillis()
                 logResultsToScreen(tstamp.toString())
 
-                File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), FILENAME).createNewFile()
-                File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
+                File(FILENAME).createNewFile()
+                File(FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
                 //File(Environment.DIRECTORY_DOWNLOADS, FILENAME).printWriter().use{ out ->
                 //    out.println("Location: ${location.toText()} Time: $tstamp")
                 //    out.close()
