@@ -36,9 +36,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import java.io.FileWriter
+import java.net.FileNameMap
 
 private const val TAG = "MainActivity"
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+private const val FILENAME = "car_data.txt"
 
 /**
  *  This app allows a user to receive location updates without the background permission even when
@@ -301,6 +305,13 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 logResultsToScreen("Foreground location: ${location.toText()}")
                 val tstamp = System.currentTimeMillis()
                 logResultsToScreen(tstamp.toString())
+
+                File(applicationContext.filesDir, FILENAME).printWriter().use{ out ->
+                    out.println("Location: ${location.toText()} Time: $tstamp")
+                }
+                //var file = File(FILENAME)
+                //file.createNewFile()
+                //File(FILENAME).appendText("Location: ${location.toText()} Time: $tstamp")
             }
         }
     }
